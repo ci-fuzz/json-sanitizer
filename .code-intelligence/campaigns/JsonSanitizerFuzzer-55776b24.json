@@ -1,7 +1,7 @@
 {
   "name": "JsonSanitizerFuzzer-55776b24",
   "displayName": "JsonSanitizerFuzzer",
-  "maxRunTime": "1800s",
+  "maxRunTime": "600s",
   "fuzzTargets": [
     "JsonSanitizerFuzzer-3e2c202a"
   ],
@@ -9,6 +9,17 @@
     {
       "engine": "JAVA_LIBFUZZER",
       "numberOfJobs": 1
+    }
+  ],
+  "configuredTargets": [
+    {
+      "fuzzTarget": "JsonSanitizerFuzzer-3e2c202a",
+      "fuzzerRunConfigurations": [
+        {
+          "engine": "JAVA_LIBFUZZER",
+          "numberOfJobs": 1
+        }
+      ]
     }
   ]
 }
