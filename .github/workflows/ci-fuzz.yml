@@ -2,14 +2,14 @@ name: Code Intelligence Fuzzing
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 2.18.2 ]
   pull_request:
-    branches: [ master ]
+    branches: [ 2.18.2 ]
 
 env:
   PROJECT_NAME: json-sanitizer
-  FUZZING_SERVER_ADDRESS: grpc-api.code-intelligence.com:443
-  DASHBOARD_ADDRESS: https://app.code-intelligence.com 
+  FUZZING_SERVER_ADDRESS: grpc-api.beta.code-intelligence.com:443
+  DASHBOARD_ADDRESS: https://app.beta.code-intelligence.com 
 
 jobs:
   fuzz_JsonSanitizerFuzzer:
@@ -17,7 +17,7 @@ jobs:
     steps:
       - id: start-fuzzing
         name: Build and Instrument
-        uses: CodeIntelligenceTesting/github-actions/start-fuzzing@master
+        uses: CodeIntelligenceTesting/github-actions/start-fuzzing@2.18.2
         with:
           ci_fuzz_api_token: ${{ secrets.CI_FUZZ_API_TOKEN }}
           project: ${{ env.PROJECT_NAME }}
@@ -26,7 +26,7 @@ jobs:
           fuzzing_server_address: ${{ env.FUZZING_SERVER_ADDRESS }}          
       - id: monitor-fuzzing
         name: Fuzzing
-        uses: CodeIntelligenceTesting/github-actions/monitor-fuzzing@master
+        uses: CodeIntelligenceTesting/github-actions/monitor-fuzzing@2.18.2
         with:
           ci_fuzz_api_token: ${{ secrets.CI_FUZZ_API_TOKEN }}
           project: ${{ env.PROJECT_NAME }}
@@ -39,7 +39,7 @@ jobs:
           dashboard_address: ${{ env.DASHBOARD_ADDRESS }}
       - id: report-coverage
         name: Report Coverage
-        uses: CodeIntelligenceTesting/github-actions/report-coverage@master
+        uses: CodeIntelligenceTesting/github-actions/report-coverage@2.18.2
         if: ${{ github.event_name == 'pull_request' && (success() || failure()) }}
         with:
           ci_fuzz_api_token: ${{ secrets.CI_FUZZ_API_TOKEN }}
