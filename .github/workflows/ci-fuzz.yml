@@ -28,6 +28,6 @@ jobs:
       - id: build-fuzzers
         name: Build Fuzzers
         run: |
-          echo ${{ secrets.CI_FUZZ_API_TOKEN }} | cictl login -s ${{ env.FUZZING_SERVER_ADDRESS }}
-          cictl list projects -s ${{ env.FUZZING_SERVER_ADDRESS }}
+          echo ${{ secrets.CI_FUZZ_API_TOKEN }} | ci-fuzz/bin/cictl login -s ${{ env.FUZZING_SERVER_ADDRESS }}
+          ci-fuzz/bin/cictl list projects -s ${{ env.FUZZING_SERVER_ADDRESS }}
         shell: "bash"
