@@ -111,3 +111,5 @@ memory overhead.
 
 The sanitize method takes O(n) time where n is the length of the input
 in UTF-16 code-units.
+
+Test edit
